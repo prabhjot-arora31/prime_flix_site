@@ -19,6 +19,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl">
         {["netflix", "primeVideo", "hotstar", "discover"].map((platform) => (
           <Link
+            key={platform}
             href={`/page/${platform.toLowerCase()}`}
             className="bg-white text-black font-semibold py-4 rounded-lg hover:bg-purple-500 hover:text-white transition duration-300 shadow-md inline-block text-center"
           >
