@@ -54,7 +54,7 @@ export default function DisneyPlusHome() {
   if (!isClient) return null;
 
   return (
-    <div className="bg-black text-white min-h-screen p-4">
+    <div className=" text-white min-h-screen p-4">
       <h2 className="text-xl font-bold mb-2">Choose Studio</h2>
       <div className="flex gap-4 overflow-x-auto mb-4">
         {studios.map((studio) => (

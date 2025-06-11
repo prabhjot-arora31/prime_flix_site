@@ -1,4 +1,5 @@
 // app/layout.js
+import Header from "@/components/Header";
 import "./globals.css";
 import { Nunito_Sans, Poppins } from "next/font/google";
 
@@ -17,7 +18,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${nunito.variable} ${poppins.variable}`}>
-      <body className="font-nunito bg-black text-white">{children}</body>
+      <Header />
+      <body className="font-nunito bg-[#0D0C0A] text-white">{children}</body>
     </html>
   );
 }
