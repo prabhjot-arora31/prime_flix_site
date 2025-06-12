@@ -2,11 +2,25 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HorizontalRow({ title, items, source = "netflix" }) {
   const containerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const router = useRouter();
+  useEffect(() => {
+    if (source === "netflix") {
+      const idsToPrefetch = getDisplayItems().slice(0, 4); // first few items
+      idsToPrefetch.forEach((item) => {
+        const idMatch = item.poster.match(/\/(\d+)\.jpg$/);
+        const id = idMatch ? idMatch[1] : null;
+        if (id) {
+          router.prefetch(`/page/details/netflix/${id}`);
+        }
+      });
+    }
+  }, [items]);
 
   useEffect(() => {
     const checkScroll = () => {
@@ -81,7 +95,11 @@ export default function HorizontalRow({ title, items, source = "netflix" }) {
             const id = idMatch ? idMatch[1] : null;
 
             return (
-              <Link key={id} href={`/page/details/netflix/${id}`}>
+              <Link
+                key={id}
+                href={`/page/details/netflix/${id}`}
+                prefetch={true}
+              >
                 <img
                   src={item.poster}
                   alt=""
