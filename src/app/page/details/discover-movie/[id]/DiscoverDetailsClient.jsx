@@ -59,7 +59,6 @@ export default function DiscoverDetailsClient({ details, episodes, id }) {
 
             {/* Match, Year, UA, Runtime, Quality */}
             <div className="flex flex-wrap gap-4 mt-3 text-gray-300 font-semibold text-lg">
-              <span>{details.match}</span>
               <span>{details.year}</span>
               <span>{details.ua}</span>
               <span>{details.runtime}</span>

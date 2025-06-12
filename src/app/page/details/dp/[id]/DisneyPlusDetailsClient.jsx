@@ -76,15 +76,6 @@ export default function DisneyPlusDetailsClient({ details, episodes, id }) {
               <span>{details.type === "t" ? "TV Series" : "Movie"}</span>
             </div>
 
-            {/* Language list */}
-            <div
-              className="mt-4 text-gray-400 max-w-xs truncate"
-              title={details.lang.map((l) => l.l).join(", ")}
-            >
-              <strong>Languages:</strong>{" "}
-              {details.lang.map((l) => l.l).join(", ")}
-            </div>
-
             {/* Director, Writer */}
             <div className="mt-4 text-gray-400 space-y-1 text-md max-w-md">
               {details.director && (

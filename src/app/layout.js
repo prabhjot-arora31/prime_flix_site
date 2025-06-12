@@ -18,8 +18,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${nunito.variable} ${poppins.variable}`}>
-      <Header />
-      <body className="font-nunito bg-[#0D0C0A] text-white">{children}</body>
+      <body className="font-nunito bg-[#0D0C0A] text-white">
+        <Header />
+
+        {children}
+      </body>
     </html>
   );
 }

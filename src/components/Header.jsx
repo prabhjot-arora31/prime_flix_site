@@ -1,9 +1,18 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/page/netflix", label: "Netflix" },
+    { href: "/page/primevideo", label: "Prime Video" },
+    { href: "/page/disney-plus", label: "Disney Plus" },
+    { href: "/page/discover", label: "Discover" },
+  ];
 
   return (
     <header className="bg-[#0D0C0A] sticky top-0 z-50 border-b border-gray-800 px-6 py-4">
@@ -15,109 +24,84 @@ export default function Header() {
             alt="PrimeFlix Logo"
             className="h-10 w-auto"
           />
-          <span className="text-purple-500 font-bold text-xl hidden sm:inline">
+          <span className="text-purple-500 font-bold text-2xl hidden sm:inline">
             PrimeFlix
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-6 text-gray-300 text-sm font-medium">
-          <Link href="/" className="hover:text-purple-500 transition">
-            Home
-          </Link>
-          <Link
-            href="/page/netflix"
-            className="hover:text-purple-500 transition"
-          >
-            Netflix
-          </Link>
-          <Link
-            href="/page/primevideo"
-            className="hover:text-purple-500 transition"
-          >
-            Prime Video
-          </Link>
-          <Link
-            href="/page/hotstar"
-            className="hover:text-purple-500 transition"
-          >
-            Hotstar
-          </Link>
-          <Link
-            href="/page/discover"
-            className="hover:text-purple-500 transition"
-          >
-            Discover
-          </Link>
+        <nav className="hidden md:flex space-x-6 text-gray-300 text-base font-medium">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="hover:text-purple-500 transition"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
-
-        {/* Mobile Hamburger */}
+        {/* Hamburger Button */}
         <button
-          className="md:hidden text-white focus:outline-none"
+          className="md:hidden text-white focus:outline-none relative w-8 h-8 z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {isMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
+          <motion.span
+            initial={false}
+            animate={isMenuOpen ? "open" : "closed"}
+            className="absolute top-1/2 left-1/2 w-6 h-0.5 bg-white rounded"
+            variants={{
+              closed: { rotate: 0, x: "-50%", y: "-8px" },
+              open: { rotate: 45, x: "-50%", y: "-50%" },
+            }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.span
+            initial={false}
+            animate={isMenuOpen ? "open" : "closed"}
+            className="absolute top-1/2 left-1/2 w-6 h-0.5 bg-white rounded"
+            variants={{
+              closed: { opacity: 1, scaleX: 1, x: "-50%", y: "-50%" },
+              open: { opacity: 0, scaleX: 0, x: "-50%", y: "-50%" },
+            }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.span
+            initial={false}
+            animate={isMenuOpen ? "open" : "closed"}
+            className="absolute top-1/2 left-1/2 w-6 h-0.5 bg-white rounded"
+            variants={{
+              closed: { rotate: 0, x: "-50%", y: "8px" },
+              open: { rotate: -45, x: "-50%", y: "-50%" },
+            }}
+            transition={{ duration: 0.3 }}
+          />
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden mt-2 space-y-2 text-gray-300 text-sm font-medium px-4">
-          <Link
-            href="/"
-            className="block hover:text-purple-500"
-            onClick={() => setIsMenuOpen(false)}
+      {/* Mobile Fullscreen Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-[#0D0C0A] z-40 flex flex-col justify-center items-center space-y-6 text-white text-xl font-semibold"
           >
-            Home
-          </Link>
-          <Link
-            href="/page/netflix"
-            className="block hover:text-purple-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Netflix
-          </Link>
-          <Link
-            href="/page/primevideo"
-            className="block hover:text-purple-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Prime Video
-          </Link>
-          <Link
-            href="/page/hotstar"
-            className="block hover:text-purple-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Hotstar
-          </Link>
-          <Link href="/page/discover" className="block hover:text-purple-500">
-            Discover
-          </Link>
-        </div>
-      )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="hover:text-purple-500 transition text-2xl"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

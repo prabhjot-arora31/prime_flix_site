@@ -54,14 +54,14 @@ export default function SuggestedTitles({
   };
 
   return (
-    <div className="relative group w-full mb-8">
+    <div className="relative group w-full mb-8 ">
       <h2 className="text-xl font-bold mb-2 text-center px-4 mb-5">{title}</h2>
 
       {/* Left Scroll Button */}
       {canScrollLeft && (
         <button
           onClick={() => scroll("left")}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 hidden group-hover:flex items-center justify-center w-10 h-10 rounded-full backdrop-blur bg-white/10 border border-white/20 text-white hover:bg-white/20 transition"
+          className="absolute justify-center left-2 top-1/2 -translate-y-1/2 z-10 hidden group-hover:flex items-center  w-10 h-10 rounded-full backdrop-blur bg-white/10 border border-white/20 text-white hover:bg-white/20 transition"
         >
           <ChevronLeft size={24} />
         </button>
@@ -70,7 +70,7 @@ export default function SuggestedTitles({
       {/* Scrollable Row */}
       <div
         ref={containerRef}
-        className="flex gap-3 overflow-x-auto px-4 scroll-smooth scrollbar-hide justify-center"
+        className="flex gap-3 overflow-x-auto px-4 scroll-smooth scrollbar-hide "
       >
         {suggest?.map((sugg) => (
           <div
@@ -97,7 +97,7 @@ export default function SuggestedTitles({
       {canScrollRight && (
         <button
           onClick={() => scroll("right")}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 hidden group-hover:flex items-center justify-center w-10 h-10 rounded-full backdrop-blur bg-white/10 border border-white/20 text-white hover:bg-white/20 transition"
+          className="absolute justify-center right-2 top-1/2 -translate-y-1/2 z-10 hidden group-hover:flex items-center  w-10 h-10 rounded-full backdrop-blur bg-white/10 border border-white/20 text-white hover:bg-white/20 transition"
         >
           <ChevronRight size={24} />
         </button>
