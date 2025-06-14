@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function DownloadApp({ isMore = false }) {
   return (
     <div className="mt-8 p-6 bg-gradient-to-br from-indigo-800 to-purple-700 rounded-2xl text-white max-w-xl shadow-xl">
@@ -9,14 +11,13 @@ export default function DownloadApp({ isMore = false }) {
       <p className="text-md text-indigo-100 mb-4">
         For the best viewing experience, please download our Android app.
       </p>
-      <a
-        href="https://example.com/your-app.apk" // Replace with your actual APK link
-        target="_blank"
+      <Link
+        href="/page/download-app" // Replace with your actual APK link
         rel="noopener noreferrer"
         className="inline-block text-md bg-white text-indigo-800 font-semibold px-5 py-2 rounded-lg shadow hover:bg-indigo-100 transition"
       >
         📲 Download APK
-      </a>
+      </Link>
     </div>
   );
 }
