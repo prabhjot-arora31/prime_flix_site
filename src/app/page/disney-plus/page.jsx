@@ -1,6 +1,7 @@
 "use client";
 
 import HorizontalRow from "@/components/HorizontalRow";
+import SkeletonLoader from "@/components/SkeletonLoader";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -57,10 +58,13 @@ export default function DisneyPlusHome() {
         setLoadingStudioId(null); // End loading
       });
   }, [selectedStudio]);
+  const [isDetailClicked, setIsDetailClicked] = useState(false);
 
   if (!isClient) return null;
 
-  return (
+  return isDetailClicked ? (
+    <SkeletonLoader />
+  ) : (
     <div className="text-white min-h-screen p-4">
       <h2 className="text-xl font-bold mb-2">Choose Studio</h2>
       <div className="flex gap-4 overflow-x-auto mb-4">
@@ -99,6 +103,7 @@ export default function DisneyPlusHome() {
           title={category.cate}
           items={category}
           source="dp"
+          setIsDetailClicked={setIsDetailClicked}
         />
       ))}
     </div>

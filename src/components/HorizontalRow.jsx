@@ -4,7 +4,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function HorizontalRow({ title, items, source = "netflix" }) {
+export default function HorizontalRow({
+  title,
+  items,
+  source = "netflix",
+  setIsDetailClicked,
+}) {
   const containerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -99,6 +104,9 @@ export default function HorizontalRow({ title, items, source = "netflix" }) {
                 key={id}
                 href={`/page/details/netflix/${id}`}
                 prefetch={true}
+                onClick={() => {
+                  setIsDetailClicked((v) => !v);
+                }}
               >
                 <img
                   src={item.poster}
@@ -109,7 +117,13 @@ export default function HorizontalRow({ title, items, source = "netflix" }) {
             );
           } else if (source == "dp") {
             return (
-              <Link key={index} href={`/page/details/dp/${item.id}`}>
+              <Link
+                key={index}
+                href={`/page/details/dp/${item.id}`}
+                onClick={() => {
+                  setIsDetailClicked((v) => !v);
+                }}
+              >
                 <img
                   src={item.poster}
                   alt=""
@@ -119,7 +133,13 @@ export default function HorizontalRow({ title, items, source = "netflix" }) {
             );
           } else {
             return (
-              <Link key={index} href={`/page/details/pv/${item.id}`}>
+              <Link
+                key={index}
+                href={`/page/details/pv/${item.id}`}
+                onClick={() => {
+                  setIsDetailClicked((v) => !v);
+                }}
+              >
                 <img
                   src={item.poster}
                   alt=""

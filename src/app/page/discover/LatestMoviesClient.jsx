@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import SkeletonLoader from "@/components/SkeletonLoader";
 
 export default function LatestMoviesClient({ initialMovies }) {
   const [movies, setMovies] = useState(initialMovies || []);
@@ -30,7 +31,11 @@ export default function LatestMoviesClient({ initialMovies }) {
     }
   };
 
-  return (
+  const [isDetailClicked, setIsDetailClicked] = useState(false);
+
+  return isDetailClicked ? (
+    <SkeletonLoader />
+  ) : (
     <div className="p-6 max-w-7xl mx-auto">
       <h2 className="text-2xl font-bold text-white mb-6">Latest Movies</h2>
 
@@ -42,6 +47,7 @@ export default function LatestMoviesClient({ initialMovies }) {
               key={index}
               href={href}
               onMouseEnter={() => router.prefetch(href)}
+              onClick={() => setIsDetailClicked((v) => !v)}
             >
               <div className="bg-gray-900 rounded-xl overflow-hidden shadow-md">
                 <Image
