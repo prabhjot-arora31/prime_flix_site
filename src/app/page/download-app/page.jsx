@@ -116,7 +116,7 @@ export default function DownloadPage() {
         <p className="text-gray-400 mb-6">
           Download the app and start exploring today — it's free!
         </p>
-        <button className="bg-green-600 hover:bg-green-700 px-10 py-3 rounded-xl text-lg font-semibold shadow-lg transition">
+        <button className="bg-green-600 hover:bg-green-700 px-10 py-3 rounded-xl text-lg font-semibold shadow-lg transition"  >
           Get the App
         </button>
       </section>

@@ -10,7 +10,6 @@ export default function Header() {
     { href: "/", label: "Home" },
     { href: "/page/netflix", label: "Netflix" },
     { href: "/page/primevideo", label: "Prime Video" },
-    { href: "/page/disney-plus", label: "Disney Plus" },
     { href: "/page/discover", label: "Discover" },
   ];
 
